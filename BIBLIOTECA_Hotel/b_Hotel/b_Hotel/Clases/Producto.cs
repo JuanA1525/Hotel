@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace b_Hotel.Clases
 {
-    internal class Producto
+    public class Producto
     {
-        internal enum e_tipos_producto { Gaseosa , Agua , Vino , Licor , Bata , KitAseo }
+        public enum e_tipos_producto { Gaseosa , Agua , Vino , Licor , Bata , KitAseo }
         internal e_tipos_producto type;
 
         public Producto(e_tipos_producto tipo) 

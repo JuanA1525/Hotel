@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Publicadores\" />
+    <Folder Include="Eventos\" />
   </ItemGroup>
 
 </Project>

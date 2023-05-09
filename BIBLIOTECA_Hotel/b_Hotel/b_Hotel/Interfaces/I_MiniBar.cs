@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace b_Hotel.Interfaces
 {
-    internal interface I_MiniBar
+    public interface I_MiniBar
     {
         void Llenar_MiniBar();
     }

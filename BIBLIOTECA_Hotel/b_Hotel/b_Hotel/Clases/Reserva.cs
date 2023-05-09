@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace b_Hotel.Clases
 {
-    internal class Reserva
+    public class Reserva
     {
+        private Habitacion habreserva;
+
+        public Reserva(Habitacion hab)
+        {
+            habreserva = hab;
+        }
+
+        public Habitacion Habreserva { get => habreserva; }
     }
 }

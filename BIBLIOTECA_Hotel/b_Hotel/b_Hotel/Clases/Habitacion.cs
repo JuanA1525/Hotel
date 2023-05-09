@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace b_Hotel.Clases
 {
-    internal class Habitacion : I_MiniBar
+    public class Habitacion : I_MiniBar
     {
         private int precioSencilla = 200000;
         private int precioEjecutiva = 350000;
@@ -55,6 +55,7 @@ namespace b_Hotel.Clases
 
         public bool Ocupada { get => ocupada; set => ocupada = value; }
         public Reserva? ReservaActual { get => reservaActual; set => reservaActual = value; }
+        public string Nom { get => nom; }
 
         public Habitacion(e_Tipos tipo, string nombre)
         {
