@@ -15,7 +15,7 @@ namespace b_Hotel.Clases
         private int precioEjecutiva = 350000;
         private int precioSuite = 500000;
 
-        private List<Producto> miniEjecutiva = new List<Producto>
+        private readonly List<Producto> miniEjecutiva = new ()
                 {
                     new Producto(Producto.e_tipos_producto.Licor),
                     new Producto(Producto.e_tipos_producto.Licor),
@@ -26,7 +26,7 @@ namespace b_Hotel.Clases
                     new Producto(Producto.e_tipos_producto.Gaseosa)
                 };
 
-        private List<Producto> miniSuite = new List<Producto>
+        private readonly List<Producto> miniSuite = new ()
                 {
                     new Producto(Producto.e_tipos_producto.Licor),
                     new Producto(Producto.e_tipos_producto.Licor),
@@ -45,19 +45,17 @@ namespace b_Hotel.Clases
 
         public enum e_Tipos { Sencilla , Ejecutiva , Suite }
         
-        private int precioNoche;
+        private readonly int precioNoche;
         private List<Producto>? l_minibar;
-        private e_Tipos tipoHabitacion;
-        private string nom;
+        private readonly e_Tipos tipoHabitacion;
 
         private bool ocupada;
         private Reserva? reservaActual;
 
         public bool Ocupada { get => ocupada; set => ocupada = value; }
         public Reserva? ReservaActual { get => reservaActual; set => reservaActual = value; }
-        public string Nom { get => nom; }
 
-        public Habitacion(e_Tipos tipo, string nombre)
+        public Habitacion(e_Tipos tipo)
         {
             if (tipo.Equals(e_Tipos.Sencilla))
             {
@@ -80,7 +78,6 @@ namespace b_Hotel.Clases
 
             Ocupada = false;
             ReservaActual = null; 
-            nom = nombre;
         }
 
         public void Llenar_MiniBar()

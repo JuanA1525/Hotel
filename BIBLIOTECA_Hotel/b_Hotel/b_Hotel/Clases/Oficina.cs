@@ -23,7 +23,7 @@ namespace b_Hotel.Clases
                 {
                     eventoReserva();
 
-                    Console.WriteLine($"Nueva Reserva, Habitacion {res.Habreserva.Nom}");
+                    Console.WriteLine($"Nueva Reserva, Habitacion {res.Habreserva}");
                     l_reservas.Add(res);
                 }
                 else throw new Exception("NO SUSCRITO");
@@ -42,7 +42,7 @@ namespace b_Hotel.Clases
                 {
                     eventoReserva();
 
-                    Console.WriteLine($"Cancelando Reserva, Habitacion {res.Habreserva.Nom}");
+                    Console.WriteLine($"Cancelando Reserva, Habitacion {res.Habreserva}");
                     l_reservas.Remove(res); 
                 }
                 else throw new Exception("NO SUSCRITO");
