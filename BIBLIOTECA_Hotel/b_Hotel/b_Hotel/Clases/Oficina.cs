@@ -56,6 +56,18 @@ namespace b_Hotel.Clases
                         {
                             res.Habreserva.Ocupada = false;
                             res.Habreserva.ReservaActual = null;
+
+                            if (res.Habreserva is Habitacion_Ejecutiva)
+                            {
+                                Habitacion_Ejecutiva eje = res.Habreserva as Habitacion_Ejecutiva;
+                                eje.Llenar_MiniBar();
+                            }
+                            else if (res.Habreserva is Habitacion_Suite)
+                            {
+                                Habitacion_Suite sui = res.Habreserva as Habitacion_Suite;
+                                sui.Llenar_MiniBar();
+                            }
+
                             L_reservas.Remove(res);
                             Console.WriteLine($"Cancelando Reserva de {usu}");
                         }
@@ -126,6 +138,7 @@ namespace b_Hotel.Clases
         }
         internal void Agregar_Productos_Reserva(Usuario usu, List<Producto> listaProductos, bool alCuarto)
         {
+            List<Producto> l_aux = listaProductos;
             try
             {
                 if (eventoTienda != null)
@@ -135,13 +148,71 @@ namespace b_Hotel.Clases
                     {
                         if (res.UsuarioReserva == usu)
                         {
-                            foreach (Producto producto in listaProductos)
+                            if (res.Habreserva is Habitacion_Ejecutiva)
                             {
-                                res.ResProductos.Add(producto);
+                                Habitacion_Ejecutiva eje = res.Habreserva as Habitacion_Ejecutiva;
+
+                                foreach (Producto productoComprar in l_aux)
+                                {
+                                    foreach (Producto productoMini in eje.L_minibar)
+                                    {
+                                        if (productoComprar.Type == productoMini.Type)
+                                        {
+                                            res.ResProductos.Add(productoComprar);
+                                            l_aux.Remove(productoComprar);
+                                            eje.L_minibar.Remove(productoMini);
+                                            eje.Tiene_Producto();
+                                        }
+                                    }
+                                }
+
+                                if (!(l_aux.Count == 0))
+                                {
+                                    foreach (Producto producto in l_aux)
+                                    {
+                                        res.ResProductos.Add(producto);
+                                    }
+                                }
+                            }
+
+                            else if (res.Habreserva is Habitacion_Suite)
+                            {
+                                Habitacion_Suite sui = res.Habreserva as Habitacion_Suite;
+
+                                foreach (Producto productoComprar in l_aux)
+                                {
+                                    foreach (Producto productoMini in sui.L_minibar)
+                                    {
+                                        if (productoComprar.Type == productoMini.Type)
+                                        {
+                                            res.ResProductos.Add(productoComprar);
+                                            l_aux.Remove(productoComprar);
+                                            sui.L_minibar.Remove(productoMini);
+                                            sui.Tiene_Producto();
+                                        }
+                                    }
+                                }
+
+                                if (!(l_aux.Count == 0))
+                                {
+                                    foreach (Producto producto in l_aux)
+                                    {
+                                        res.ResProductos.Add(producto);
+                                    }
+                                }
+                            }
+
+                            else
+                            {
+                                foreach (Producto producto in l_aux)
+                                {
+                                    res.ResProductos.Add(producto);
+                                }
                             }
 
                             if (alCuarto)
                                 res.Nro_ServiciosCuarto++;
+
                         }
                     }
                 }

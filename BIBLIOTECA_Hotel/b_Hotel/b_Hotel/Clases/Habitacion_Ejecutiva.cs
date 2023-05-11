@@ -14,13 +14,40 @@ namespace b_Hotel.Clases
             Ocupada = false;
             ReservaActual = null;
             PrecioNoche = precioEjecutiva;
+            TieneMini = true;
 
-            Llenar_MiniBar();
+            L_minibar = miniEjecutiva;
         }
 
         public void Llenar_MiniBar()
         {
+            Console.WriteLine("ReLlenando MiniBar");
             L_minibar = miniEjecutiva;
+        }
+
+        public void Tiene_Producto()
+        {
+            try
+            {
+                foreach (Producto.e_tipos_producto tipo in tiposEje)
+                {
+                    bool found = false;
+                    foreach (Producto producto in L_minibar)
+                    {
+                        if (producto.Type == tipo)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)
+                        Llenar_MiniBar();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error en Tiene Producto Eje");
+            }
         }
     }
 }

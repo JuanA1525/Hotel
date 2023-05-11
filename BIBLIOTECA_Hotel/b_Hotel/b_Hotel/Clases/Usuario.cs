@@ -9,20 +9,35 @@ namespace b_Hotel.Clases
 {
     public class Usuario
     {
+        public enum e_tipoID { CC , TI , PA , CE }
+        private bool tieneReserva;
         private Hotel hotel;
+
         private string nombre;
-        private byte edad;
-        private static Oficina office;
-        private bool reserva;
+        private e_tipoID tipoID;
+        private short nroDoc;
+        private short telefono;
+        private string usuarioLogin;
+        private string contrasenia;
 
-        public Usuario (string nom, byte age)
+        public string Nombre { get => nombre; set => nombre = value; }
+        public e_tipoID TipoID { get => tipoID; set => tipoID = value; }
+        public short NroDoc { get => nroDoc; set => nroDoc = value; }
+        public short Telefono { get => telefono; set => telefono = value; }
+        public string UsuarioLogin { get => usuarioLogin; set => usuarioLogin = value; }
+        public string Contrasenia { get => contrasenia; set => contrasenia = value; }
+
+        public Usuario(string nom, e_tipoID tipoid, short documento, short tel, string usu, string contra)
         {
-            nombre = nom;
-            edad = age;
-            reserva = false;
+            Nombre = nom;
+            TipoID = tipoid;
+            NroDoc = documento;
+            Telefono = tel;
+            UsuarioLogin = usu;
+            Contrasenia = contra;
 
+            tieneReserva = false;
             hotel = Hotel.Obtener_Instancia_Hotel();
-            office = hotel.oficinaHotel;
         }
 
         public void Event_Handler_Reservas()
@@ -33,9 +48,10 @@ namespace b_Hotel.Clases
         public void Crear_Reserva(Habitacion hab)
         {
             Reserva reservaUsu = new Reserva(hab, this);
+            Oficina office = hotel.oficinaHotel;
             try
             {
-                if (!reserva)
+                if (!tieneReserva)
                 {
                     reservaUsu.Habreserva.ReservaActual = reservaUsu;
                     reservaUsu.Habreserva.Ocupada = true;
@@ -54,9 +70,10 @@ namespace b_Hotel.Clases
         }
         public void Eliminar_Reserva ()
         {
+            Oficina office = hotel.oficinaHotel;
             try
             {
-                if (reserva)
+                if (tieneReserva)
                 {
                     office.eventoReserva += Event_Handler_Reservas;
                     office.Eliminar_Reserva(this);

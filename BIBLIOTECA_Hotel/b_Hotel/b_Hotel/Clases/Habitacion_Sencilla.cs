@@ -16,6 +16,7 @@ namespace b_Hotel.Clases
             ReservaActual = null;
             L_minibar = null;
             PrecioNoche = precioSencilla;
+            TieneMini = false;
         }
     }
 }

@@ -42,16 +42,32 @@ namespace b_Hotel.Clases
                     new Producto(Producto.e_tipos_producto.Bata),
                     new Producto(Producto.e_tipos_producto.Bata)
                 };
-        
+
+        internal readonly List<Producto.e_tipos_producto> tiposEje = new()
+        {
+            Producto.e_tipos_producto.Licor,
+            Producto.e_tipos_producto.KitAseo,
+            Producto.e_tipos_producto.Gaseosa
+        };
+
+        internal readonly List<Producto.e_tipos_producto> tiposSui = new()
+        {
+            Producto.e_tipos_producto.Licor,
+            Producto.e_tipos_producto.KitAseo,
+            Producto.e_tipos_producto.Gaseosa,
+            Producto.e_tipos_producto.Bata
+        };
 
         private int precioNoche;
         private List<Producto>? l_minibar;
         private bool ocupada;
         private Reserva? reservaActual;
+        private bool tieneMini;
 
         public bool Ocupada { get => ocupada; set => ocupada = value; }
         public Reserva? ReservaActual { get => reservaActual; set => reservaActual = value; }
         public int PrecioNoche { get => precioNoche; set => precioNoche = value; }
         public List<Producto>? L_minibar { get => l_minibar; set => l_minibar = value; }
+        public bool TieneMini { get => tieneMini; set => tieneMini = value; }
     }
 }

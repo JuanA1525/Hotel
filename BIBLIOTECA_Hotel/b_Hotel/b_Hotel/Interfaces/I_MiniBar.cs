@@ -9,5 +9,6 @@ namespace b_Hotel.Interfaces
     public interface I_MiniBar
     {
         void Llenar_MiniBar();
+        void Tiene_Producto();
     }
 }
