@@ -17,7 +17,7 @@ namespace b_Hotel.Clases
         private readonly int precio;
         private readonly e_tipos_comida type;
 
-        public float Precio { get => precio; }
+        public int Precio { get => precio; }
         public e_tipos_comida Type { get => type; }
 
         public Comida(e_tipos_comida tipo)

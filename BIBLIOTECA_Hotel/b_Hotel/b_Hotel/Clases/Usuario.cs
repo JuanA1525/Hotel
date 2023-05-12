@@ -7,18 +7,21 @@ using System.Threading.Tasks;
 
 namespace b_Hotel.Clases
 {
-    public class Usuario
+    public abstract class Usuario
     {
         public enum e_tipoID { CC , TI , PA , CE }
+        public enum e_Nacionalidad { Colombiano, Otro }
         private bool tieneReserva;
         private Hotel hotel;
 
         private string nombre;
         private e_tipoID tipoID;
+        private e_Nacionalidad nacionalidad;
         private short nroDoc;
         private short telefono;
         private string usuarioLogin;
         private string contrasenia;
+        private bool checkedIN;
 
         public string Nombre { get => nombre; set => nombre = value; }
         public e_tipoID TipoID { get => tipoID; set => tipoID = value; }
@@ -26,8 +29,10 @@ namespace b_Hotel.Clases
         public short Telefono { get => telefono; set => telefono = value; }
         public string UsuarioLogin { get => usuarioLogin; set => usuarioLogin = value; }
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
+        public bool CheckedIN { get => checkedIN; set => checkedIN = value; }
+        public e_Nacionalidad Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
 
-        public Usuario(string nom, e_tipoID tipoid, short documento, short tel, string usu, string contra)
+        public Usuario(string nom, e_tipoID tipoid, short documento, short tel, string usu, string contra, e_Nacionalidad nacion)
         {
             Nombre = nom;
             TipoID = tipoid;
@@ -35,8 +40,10 @@ namespace b_Hotel.Clases
             Telefono = tel;
             UsuarioLogin = usu;
             Contrasenia = contra;
+            Nacionalidad = nacion;
 
             tieneReserva = false;
+            checkedIN = false;
             hotel = Hotel.Obtener_Instancia_Hotel();
         }
 
@@ -44,7 +51,6 @@ namespace b_Hotel.Clases
         {
             Console.WriteLine("Procesando Reserva");
         }
-
         public void Crear_Reserva(Habitacion hab)
         {
             Reserva reservaUsu = new Reserva(hab, this);

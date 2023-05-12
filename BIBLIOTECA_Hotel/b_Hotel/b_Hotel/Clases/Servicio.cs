@@ -16,7 +16,7 @@ namespace b_Hotel.Clases
         private readonly int precio;
         private readonly e_tipos_servicio type;
 
-        public float Precio { get => precio; }
+        public int Precio { get => precio; }
         public e_tipos_servicio Type { get => type; }
 
         public Servicio(e_tipos_servicio tipo)

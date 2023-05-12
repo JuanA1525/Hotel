@@ -11,6 +11,9 @@ namespace b_Hotel.Clases
         private List<Reserva> l_reservas = new();
         private readonly Recepcion recepcionHotel;
 
+        public Oficina()
+        {}
+
         public List<Reserva> L_reservas { get => l_reservas; }
 
         internal delegate void delegadoReserva();

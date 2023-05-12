@@ -10,6 +10,7 @@ namespace b_Hotel.Clases
     {
         private Habitacion habreserva;
         private Usuario usuarioReserva;
+        private byte nroNoches;
 
         private List<Producto> resProductos;
         private List<Comida> resComidas;
@@ -33,5 +34,6 @@ namespace b_Hotel.Clases
         public List<Servicio> ResServicios { get => resServicios; set => resServicios = value; }
         public Usuario UsuarioReserva { get => usuarioReserva; set => usuarioReserva = value; }
         public int Nro_ServiciosCuarto { get => nro_ServiciosCuarto; set => nro_ServiciosCuarto = value; }
+        public byte NroNoches { get => nroNoches; set => nroNoches = value; }
     }
 }

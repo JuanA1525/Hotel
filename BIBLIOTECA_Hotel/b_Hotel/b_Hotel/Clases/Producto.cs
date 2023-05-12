@@ -22,7 +22,7 @@ namespace b_Hotel.Clases
         private readonly int precio;
         private readonly e_tipos_producto type;
 
-        public float Precio { get => precio; }
+        public int Precio { get => precio; }
         public e_tipos_producto Type { get => type; }
 
         public Producto(e_tipos_producto tipo) 
