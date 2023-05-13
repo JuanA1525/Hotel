@@ -12,6 +12,7 @@ namespace b_Hotel.Clases
         public Habitacion_Suite() : base()
         {
             Ocupada = false;
+            Reservada = false;
             ReservaActual = null;
             PrecioNoche = precioSuite;
             TieneMini = true;

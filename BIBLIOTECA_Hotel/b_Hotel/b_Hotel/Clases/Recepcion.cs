@@ -12,29 +12,26 @@ namespace b_Hotel.Clases
     internal class Recepcion : I_Recepcion
     {
         private float iva = 0.19f;
-        private float seguroHotelero = 0.025f; 
+        private float seguroHotelero = 0.025f;
+        private short servicioCuarto = 5000;
 
         public Recepcion() 
         {}
-
-        public void Check_In(Reserva res)
-        {
-
-        }
 
         public Dictionary<string, float> Check_Out(Reserva res)
         {       
             byte nroDes = 0, nroAlm = 0, nroCena = 0, nroGaseosa = 0, nroVino = 0, nroLicor = 0, 
                 nroBata = 0, nroKitAseo = 0, nroAgua = 0, nroLavadas = 0, nroPlanchadas = 0, nroServicioCuarto = 0;
 
-            float valorTotal = 0, valorRestaurante = 0, valorTienda = 0, valorLavanderia = 0, 
-                valorEstadia = 0, descuentoAplicado = 0, valorDescuento = 0, valorSeguroHotelero = 0, valorIVA = 0;
+            float valorTotal = 0, valorRestaurante = 0, valorTienda = 0, valorLavanderia = 0,
+                valorEstadia = 0, descuentoAplicado = 0, valorDescuento = 0, valorSeguroHotelero = 0, valorIVA = 0, valorServicioHabitacion = 0;
 
             Dictionary<string, float> data;
 
             try
             {
                 nroServicioCuarto = (byte)res.Nro_ServiciosCuarto;
+                valorServicioHabitacion = nroServicioCuarto * servicioCuarto;
 
                 if (res.UsuarioReserva is Cliente)
                     descuentoAplicado = (res.UsuarioReserva as Cliente).Descuento;
@@ -106,7 +103,7 @@ namespace b_Hotel.Clases
                 
                 valorEstadia = (res.Habreserva.PrecioNoche * res.NroNoches) + valorSeguroHotelero;
 
-                valorTotal = valorEstadia + valorLavanderia + valorRestaurante + valorTienda;
+                valorTotal = valorEstadia + valorLavanderia + valorRestaurante + valorTienda + valorServicioHabitacion;
 
                 if (res.UsuarioReserva.Nacionalidad == Usuario.e_Nacionalidad.Colombiano)
                 {
@@ -139,6 +136,7 @@ namespace b_Hotel.Clases
                     {"valorSeguroHotelero", valorSeguroHotelero},
                     {"valorDescuento", valorDescuento},
                     {"descuentoAplicado", descuentoAplicado},
+                    {"valorServiciosCuarto", valorServicioHabitacion},
                     {"TOTAL", valorTotal}
                 };
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -17,22 +18,22 @@ namespace b_Hotel.Clases
         private string nombre;
         private e_tipoID tipoID;
         private e_Nacionalidad nacionalidad;
-        private short nroDoc;
-        private short telefono;
+        private long nroDoc;
+        private long telefono;
         private string usuarioLogin;
         private string contrasenia;
         private bool checkedIN;
-
+        
         public string Nombre { get => nombre; set => nombre = value; }
         public e_tipoID TipoID { get => tipoID; set => tipoID = value; }
-        public short NroDoc { get => nroDoc; set => nroDoc = value; }
-        public short Telefono { get => telefono; set => telefono = value; }
+        public long NroDoc { get => nroDoc; set => nroDoc = value; }
+        public long Telefono { get => telefono; set => telefono = value; }
         public string UsuarioLogin { get => usuarioLogin; set => usuarioLogin = value; }
         public string Contrasenia { get => contrasenia; set => contrasenia = value; }
         public bool CheckedIN { get => checkedIN; set => checkedIN = value; }
         public e_Nacionalidad Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
 
-        public Usuario(string nom, e_tipoID tipoid, short documento, short tel, string usu, string contra, e_Nacionalidad nacion)
+        public Usuario(string nom, e_tipoID tipoid, long documento, long tel, string usu, string contra, e_Nacionalidad nacion)
         {
             Nombre = nom;
             TipoID = tipoid;
@@ -49,32 +50,82 @@ namespace b_Hotel.Clases
 
         public void Event_Handler_Reservas()
         {
-            Console.WriteLine("Procesando Reserva");
+            Console.WriteLine("Procesando Evento...");
         }
-        public void Crear_Reserva(Habitacion hab)
+
+        public void Crear_Reserva(Habitacion hab, string strFechaEntrada, string strFechaSalida)
         {
-            Reserva reservaUsu = new Reserva(hab, this);
+            Reserva reservaUsu;
             Oficina office = hotel.oficinaHotel;
+
             try
             {
+                reservaUsu = new Reserva(hab, this, strFechaEntrada, strFechaSalida);
+
                 if (!tieneReserva)
                 {
-                    reservaUsu.Habreserva.ReservaActual = reservaUsu;
-                    reservaUsu.Habreserva.Ocupada = true;
-
                     office.eventoReserva += Event_Handler_Reservas;
                     office.Informar_Nueva_Reserva(reservaUsu);
                     office.eventoReserva -= Event_Handler_Reservas;
                 }
                 else
-                    Console.WriteLine("Usted ya tiene Reserva");
+                    throw new Exception("Usted ya tiene Reserva");
             }
             catch (Exception error)
             {
                 throw new Exception("Error en crear reserva " + error);
             }
         }
-        public void Eliminar_Reserva ()
+        public Dictionary<string, float> Check_Out()
+        {
+            Dictionary<string, float> data;
+            Oficina office;
+            try
+            {
+                if (checkedIN)
+                {
+                    office = hotel.oficinaHotel;
+
+                    office.eventoReserva += Event_Handler_Reservas;
+                    data = office.Informar_Check_Out(this);
+                    office.eventoReserva -= Event_Handler_Reservas;
+
+                    return data;
+                }
+                else
+                {
+                    throw new Exception("No puedes hacer Check-Out sin hacer Check-In");
+                }
+            }
+            catch (Exception error)
+            {
+                throw new Exception($"Error en CheckOut desde el USUARIO:\n{error}");
+            }
+        }
+        public void Check_In()
+        {
+            Oficina office;
+            try
+            {
+                if (!checkedIN)
+                {
+                    office = hotel.oficinaHotel;
+
+                    office.eventoReserva += Event_Handler_Reservas;
+                    office.Informar_Check_In(this);
+                    office.eventoReserva -= Event_Handler_Reservas;
+                }
+                else
+                {
+                    throw new Exception("Ya hiciste Check-In");
+                }
+            }
+            catch (Exception error)
+            {
+                throw new Exception($"Error en CheckOut desde el USUARIO:\n{error}");
+            }
+        }
+        public void Eliminar_Reserva()
         {
             Oficina office = hotel.oficinaHotel;
             try

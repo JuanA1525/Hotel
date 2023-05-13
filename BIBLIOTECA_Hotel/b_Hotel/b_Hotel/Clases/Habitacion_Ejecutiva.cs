@@ -12,6 +12,7 @@ namespace b_Hotel.Clases
         public Habitacion_Ejecutiva() : base()
         {
             Ocupada = false;
+            Reservada = false;
             ReservaActual = null;
             PrecioNoche = precioEjecutiva;
             TieneMini = true;

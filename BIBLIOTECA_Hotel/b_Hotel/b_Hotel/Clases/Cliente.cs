@@ -11,7 +11,7 @@ namespace b_Hotel.Clases
         private string codigoCliente;
         private float descuento;
 
-        public Cliente(string nom, e_tipoID tipoid, short documento, short tel, string usu, string contra, string codigo, e_Nacionalidad nacion, float descto) : base(nom, tipoid, documento, tel, usu, contra, nacion)
+        public Cliente(string nom, e_tipoID tipoid, long documento, long tel, string usu, string contra, e_Nacionalidad nacion, string codigo,  float descto) : base(nom, tipoid, documento, tel, usu, contra, nacion)
         {
             CodigoCliente = codigo;
             Descuento = descto;

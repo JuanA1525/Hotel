@@ -13,6 +13,7 @@ namespace b_Hotel.Clases
         public Habitacion_Sencilla() : base()
         {
             Ocupada = false;
+            Reservada = false;
             ReservaActual = null;
             L_minibar = null;
             PrecioNoche = precioSencilla;

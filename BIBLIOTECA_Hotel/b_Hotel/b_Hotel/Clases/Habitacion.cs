@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -61,6 +62,7 @@ namespace b_Hotel.Clases
         private int precioNoche;
         private List<Producto>? l_minibar;
         private bool ocupada;
+        private bool reservada;
         private Reserva? reservaActual;
         private bool tieneMini;
 
@@ -69,5 +71,6 @@ namespace b_Hotel.Clases
         public int PrecioNoche { get => precioNoche; set => precioNoche = value; }
         public List<Producto>? L_minibar { get => l_minibar; set => l_minibar = value; }
         public bool TieneMini { get => tieneMini; set => tieneMini = value; }
+        public bool Reservada { get => reservada; set => reservada = value; }
     }
 }
