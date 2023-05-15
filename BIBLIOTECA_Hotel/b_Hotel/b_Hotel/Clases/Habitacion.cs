@@ -60,7 +60,6 @@ namespace b_Hotel.Clases
         };
 
         private int precioNoche;
-        private List<Producto>? l_minibar;
         private bool ocupada;
         private bool reservada;
         private Reserva? reservaActual;
@@ -69,7 +68,6 @@ namespace b_Hotel.Clases
         public bool Ocupada { get => ocupada; set => ocupada = value; }
         public Reserva? ReservaActual { get => reservaActual; set => reservaActual = value; }
         public int PrecioNoche { get => precioNoche; set => precioNoche = value; }
-        public List<Producto>? L_minibar { get => l_minibar; set => l_minibar = value; }
         public bool TieneMini { get => tieneMini; set => tieneMini = value; }
         public bool Reservada { get => reservada; set => reservada = value; }
     }

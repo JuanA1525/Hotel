@@ -17,14 +17,46 @@ internal class Program
         var maniana = DateTime.Now.AddDays(5);
 
         habs = hotel.oficinaHotel.Buscar_Habitaciones_Disponibles(hoy, maniana);
-        usuActual.Crear_Reserva(habs[2],hoy.ToString("dd/MM/yyyy"), maniana.ToString("dd/MM/yyyy"));
+        usuActual.Crear_Reserva(habs[49],hoy.ToString("dd/MM/yyyy"), maniana.ToString("dd/MM/yyyy"));
         Console.WriteLine(habs.Count);
 
-        hoy = DateTime.Now.AddDays(10);
-        maniana = DateTime.Now.AddDays(15);
+        Console.WriteLine("COMPRA #1");
+        usuActual.Comprar_Productos(1,0,0,0,0,0,false);
+        Console.WriteLine("COMPRA #2");
+        usuActual.Comprar_Productos(1,0,0,0,0,0,false);
+        Console.WriteLine("COMPRA #3");
+        usuActual.Comprar_Productos(2, 0, 0, 0, 0, 0, false);
 
-        habs = hotel.oficinaHotel.Buscar_Habitaciones_Disponibles(hoy, maniana);
-        usuActual.Crear_Reserva(habs[2], hoy.ToString("dd/MM/yyyy"), maniana.ToString("dd/MM/yyyy"));
-        Console.WriteLine(habs.Count);
+        usuActual.Comprar_Comida(1, 0, 0,false);
+        usuActual.Comprar_Comida(1, 0, 0,false);
+        usuActual.Comprar_Comida(1, 0, 0,false);
+
+        foreach (KeyValuePair<string, string> item in hotel.oficinaHotel.Reporte_Habitaciones())
+        {
+            Console.WriteLine(item.Key);
+            Console.WriteLine(item.Value);
+        }
+
+        usuActual.Check_In();
+
+        foreach (KeyValuePair<string, string> item in hotel.oficinaHotel.Reporte_Habitaciones())
+        {
+            Console.WriteLine(item.Key);
+            Console.WriteLine(item.Value);
+        }
+
+        Console.WriteLine("\n\n");
+        
+        foreach (KeyValuePair<string, string> item in usuActual.Check_Out())
+        {
+            Console.WriteLine(item.Key);
+            Console.WriteLine(item.Value);
+        }
+
+        foreach (KeyValuePair<string, string> item in hotel.oficinaHotel.Reporte_Habitaciones())
+        {
+            Console.WriteLine(item.Key);
+            Console.WriteLine(item.Value);
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace b_Hotel.Clases
             FechaEntrada = DateTime.ParseExact(fEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             FechaSalida = DateTime.ParseExact(fSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             tiempoEstadia = FechaSalida - FechaEntrada;
+            nroNoches = (byte)tiempoEstadia.Days;
         }
 
         public Habitacion Habreserva { get => habreserva; set => habreserva = value; }

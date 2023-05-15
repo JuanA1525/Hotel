@@ -12,7 +12,9 @@ namespace b_Hotel.Clases
         private readonly Recepcion recepcionHotel;
 
         public Oficina()
-        {}
+        {
+            recepcionHotel = new Recepcion();
+        }
 
         public List<Reserva> L_reservas { get => l_reservas; }
 
@@ -89,7 +91,7 @@ namespace b_Hotel.Clases
                 throw;
             }
         }
-        internal Dictionary<string, float> Informar_Check_Out(Usuario usu)
+        internal Dictionary<string, string> Informar_Check_Out(Usuario usu)
         {
             try
             {
@@ -209,8 +211,9 @@ namespace b_Hotel.Clases
             }
         }
         internal void Agregar_Productos_Reserva(Usuario usu, List<Producto> listaProductos, bool alCuarto)
-        {
-            List<Producto> l_aux = listaProductos;
+        {         
+            List<Producto> l_aux = listaProductos.ToList();
+
             try
             {
                 if (eventoTienda != null)
@@ -222,7 +225,7 @@ namespace b_Hotel.Clases
                         {
                             if (res.Habreserva is Habitacion_Ejecutiva)
                             {
-                                Habitacion_Ejecutiva eje = res.Habreserva as Habitacion_Ejecutiva;
+                                Habitacion_Ejecutiva eje = (Habitacion_Ejecutiva)res.Habreserva;
 
                                 foreach (Producto productoComprar in l_aux)
                                 {
@@ -230,47 +233,32 @@ namespace b_Hotel.Clases
                                     {
                                         if (productoComprar.Type == productoMini.Type)
                                         {
-                                            res.ResProductos.Add(productoComprar);
-                                            l_aux.Remove(productoComprar);
                                             eje.L_minibar.Remove(productoMini);
                                             eje.Tiene_Producto();
+                                            break;
                                         }
                                     }
-                                }
-
-                                if (!(l_aux.Count == 0))
-                                {
-                                    foreach (Producto producto in l_aux)
-                                    {
-                                        res.ResProductos.Add(producto);
-                                    }
+                                    res.ResProductos.Add(productoComprar);
                                 }
                             }
 
                             else if (res.Habreserva is Habitacion_Suite)
                             {
-                                Habitacion_Suite sui = res.Habreserva as Habitacion_Suite;
+
+                                Habitacion_Suite sui = (Habitacion_Suite)res.Habreserva;
 
                                 foreach (Producto productoComprar in l_aux)
                                 {
                                     foreach (Producto productoMini in sui.L_minibar)
                                     {
-                                        if (productoComprar.Type == productoMini.Type)
+                                        if (productoComprar.Type.Equals(productoMini.Type))
                                         {
-                                            res.ResProductos.Add(productoComprar);
-                                            l_aux.Remove(productoComprar);
                                             sui.L_minibar.Remove(productoMini);
                                             sui.Tiene_Producto();
+                                            break;
                                         }
                                     }
-                                }
-
-                                if (!(l_aux.Count == 0))
-                                {
-                                    foreach (Producto producto in l_aux)
-                                    {
-                                        res.ResProductos.Add(producto);
-                                    }
+                                    res.ResProductos.Add(productoComprar);
                                 }
                             }
 
@@ -291,9 +279,9 @@ namespace b_Hotel.Clases
                 }
                 else throw new Exception("NO SUSCRITO");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw new Exception("Error:\n" + e);
             }
         }
 
@@ -330,9 +318,9 @@ namespace b_Hotel.Clases
                 throw new Exception("Error en Buscar_Habitaciones_Disponibles:\n" + error);
             }
         }
-        public Dictionary<string, int> Reporte_Habitaciones()
+        public Dictionary<string, string> Reporte_Habitaciones()
         {
-            Dictionary<string, int> reporte;
+            Dictionary<string, string> reporte;
             byte contReservadas = 0, contOcupadas = 0, contDisponibles = 0;
             try
             {
@@ -343,11 +331,11 @@ namespace b_Hotel.Clases
                     else contDisponibles++;
                 }
 
-                reporte = new Dictionary<string, int>()
+                reporte = new Dictionary<string, string>()
                 {
-                    {"reservadas",contReservadas},
-                    {"ocupadas",contOcupadas},
-                    {"disponibles",contDisponibles}
+                    {"reservadas",contReservadas.ToString()},
+                    {"ocupadas",contOcupadas.ToString()},
+                    {"disponibles",contDisponibles.ToString()}
                 
                 };
 

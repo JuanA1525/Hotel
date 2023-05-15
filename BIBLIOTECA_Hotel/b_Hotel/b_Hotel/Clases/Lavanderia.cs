@@ -17,7 +17,7 @@ namespace b_Hotel.Clases
 
         public void Event_Handler_Lavanderia()
         {
-            Console.WriteLine("Procesando Lavanderia");
+            Console.WriteLine("Procesando Lavanderia...");
         }
 
         public void Lavar_Planchar(List<Servicio> listaProductos, bool alCuarto, Usuario usu)

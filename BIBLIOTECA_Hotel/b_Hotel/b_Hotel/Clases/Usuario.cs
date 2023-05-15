@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,7 +51,7 @@ namespace b_Hotel.Clases
 
         public void Event_Handler_Reservas()
         {
-            Console.WriteLine("Procesando Evento...");
+            Console.WriteLine("Procesando Reserva...");
         }
 
         public void Crear_Reserva(Habitacion hab, string strFechaEntrada, string strFechaSalida)
@@ -76,9 +77,9 @@ namespace b_Hotel.Clases
                 throw new Exception("Error en crear reserva " + error);
             }
         }
-        public Dictionary<string, float> Check_Out()
+        public Dictionary<string, string> Check_Out()
         {
-            Dictionary<string, float> data;
+            Dictionary<string, string> data;
             Oficina office;
             try
             {
@@ -110,6 +111,8 @@ namespace b_Hotel.Clases
                 if (!checkedIN)
                 {
                     office = hotel.oficinaHotel;
+
+                    checkedIN = true;
 
                     office.eventoReserva += Event_Handler_Reservas;
                     office.Informar_Check_In(this);
@@ -167,9 +170,9 @@ namespace b_Hotel.Clases
 
                 hotel.restauranteHotel.Vender_Comida(lista, alCuarto, this);
             }
-            catch
+            catch(Exception error)
             {
-                throw new Exception("Error en Comprar Comida");
+                throw new Exception("Error en Comprar Comida:\n" + error);
             }
         }
         public void Solicitar_Servicio(int nro_Lavadas, int nro_Planchadas, bool alCuarto)
@@ -223,7 +226,7 @@ namespace b_Hotel.Clases
 
                 for (int i = 0; i < nro_Licor; i++)
                 {
-                    lista.Add(new Producto(Producto.e_tipos_producto.KitAseo));
+                    lista.Add(new Producto(Producto.e_tipos_producto.Licor));
                 }
 
                 for (int i = 0; i < nro_Vino; i++)
@@ -233,9 +236,9 @@ namespace b_Hotel.Clases
 
                 hotel.tiendaHotel.Vender_Productos(lista, alCuarto, this);
             }
-            catch
+            catch(Exception error)
             {
-                throw new Exception("Error en Comprar Comida");
+                throw new Exception("Error en Comprar Comida:\n"+error);
             }
         }
     }

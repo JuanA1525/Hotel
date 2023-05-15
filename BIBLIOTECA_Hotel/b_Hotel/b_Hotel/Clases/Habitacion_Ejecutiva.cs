@@ -9,6 +9,9 @@ namespace b_Hotel.Clases
 {
     public class Habitacion_Ejecutiva : Habitacion , I_MiniBar
     {
+        private List<Producto> l_minibar;
+        public List<Producto> L_minibar { get => l_minibar; set => l_minibar = value; }
+
         public Habitacion_Ejecutiva() : base()
         {
             Ocupada = false;
@@ -17,13 +20,13 @@ namespace b_Hotel.Clases
             PrecioNoche = precioEjecutiva;
             TieneMini = true;
 
-            L_minibar = miniEjecutiva;
+            L_minibar = miniEjecutiva.ToList();
         }
 
         public void Llenar_MiniBar()
         {
             Console.WriteLine("ReLlenando MiniBar");
-            L_minibar = miniEjecutiva;
+            L_minibar = miniEjecutiva.ToList();
         }
 
         public void Tiene_Producto()

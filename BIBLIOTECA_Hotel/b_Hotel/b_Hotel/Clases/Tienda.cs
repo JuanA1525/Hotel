@@ -27,7 +27,7 @@ namespace b_Hotel.Clases
             {
                 office.eventoTienda += Event_Handler_Tienda;
                 office.Agregar_Productos_Reserva(usu, listaProductos, alCuarto);
-                office.eventoRestaurante -= Event_Handler_Tienda;
+                office.eventoTienda -= Event_Handler_Tienda;
             }
             catch (Exception error)
             {

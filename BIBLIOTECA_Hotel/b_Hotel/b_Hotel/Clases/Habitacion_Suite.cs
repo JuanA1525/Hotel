@@ -9,6 +9,9 @@ namespace b_Hotel.Clases
 {
     public class Habitacion_Suite : Habitacion , I_MiniBar
     {
+        private List<Producto> l_minibar;
+        public List<Producto> L_minibar { get => l_minibar; set => l_minibar = value; }
+
         public Habitacion_Suite() : base()
         {
             Ocupada = false;
@@ -16,19 +19,20 @@ namespace b_Hotel.Clases
             ReservaActual = null;
             PrecioNoche = precioSuite;
             TieneMini = true;
-            L_minibar = miniEjecutiva;
+            L_minibar = miniSuite.ToList();
         }
+
 
         public void Llenar_MiniBar()
         {
-            L_minibar = miniEjecutiva;
+            L_minibar = miniSuite.ToList();
             Console.WriteLine("ReLlenando MiniBar");
         }
         public void Tiene_Producto()
         {
             try
             {
-                foreach (Producto.e_tipos_producto tipo in tiposEje)
+                foreach (Producto.e_tipos_producto tipo in tiposSui)
                 {
                     bool found = false;
                     foreach (Producto producto in L_minibar)

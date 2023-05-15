@@ -18,7 +18,7 @@ namespace b_Hotel.Clases
         public Recepcion() 
         {}
 
-        public Dictionary<string, float> Check_Out(Reserva res)
+        public Dictionary<string, string> Check_Out(Reserva res)
         {       
             byte nroDes = 0, nroAlm = 0, nroCena = 0, nroGaseosa = 0, nroVino = 0, nroLicor = 0, 
                 nroBata = 0, nroKitAseo = 0, nroAgua = 0, nroLavadas = 0, nroPlanchadas = 0, nroServicioCuarto = 0;
@@ -26,7 +26,7 @@ namespace b_Hotel.Clases
             float valorTotal = 0, valorRestaurante = 0, valorTienda = 0, valorLavanderia = 0,
                 valorEstadia = 0, descuentoAplicado = 0, valorDescuento = 0, valorSeguroHotelero = 0, valorIVA = 0, valorServicioHabitacion = 0;
 
-            Dictionary<string, float> data;
+            Dictionary<string, string> data;
 
             try
             {
@@ -114,30 +114,31 @@ namespace b_Hotel.Clases
                 valorDescuento = valorTotal * descuentoAplicado;
                 valorTotal -= valorDescuento;
 
-                data = new Dictionary<string, float>()
+                data = new Dictionary<string, string>()
                 {
-                    {"nroDesayunos", nroDes},
-                    {"nroAlmuerzos", nroAlm},
-                    {"nroCenas", nroCena},
-                    {"nroPlanchadas", nroPlanchadas},
-                    {"nroLavadas", nroLavadas},
-                    {"nroGaseosas", nroGaseosa},
-                    {"nroKitAseo", nroKitAseo},
-                    {"nroBatas", nroBata},
-                    {"nroLicores", nroLicor},
-                    {"nroVinos", nroVino},
-                    {"nroAguas", nroAgua},
-                    {"nroServicioCuarto", nroServicioCuarto},
-                    {"valorRestaurante", valorRestaurante},
-                    {"valorLavanderia", valorLavanderia},
-                    {"valorTienda", valorTienda},
-                    {"valorIVA", valorIVA},
-                    {"valorEstadia", valorEstadia},
-                    {"valorSeguroHotelero", valorSeguroHotelero},
-                    {"valorDescuento", valorDescuento},
-                    {"descuentoAplicado", descuentoAplicado},
-                    {"valorServiciosCuarto", valorServicioHabitacion},
-                    {"TOTAL", valorTotal}
+                    {"nroDesayunos", nroDes.ToString()},
+                    {"nroAlmuerzos", nroAlm.ToString()},
+                    {"nroCenas", nroCena.ToString()},
+                    {"nroPlanchadas", nroPlanchadas.ToString()},
+                    {"nroLavadas", nroLavadas.ToString()},
+                    {"nroGaseosas", nroGaseosa.ToString()},
+                    {"nroKitAseo", nroKitAseo.ToString()},
+                    {"nroBatas", nroBata.ToString()},
+                    {"nroLicores", nroLicor.ToString()},
+                    {"nroVinos", nroVino.ToString()},
+                    {"nroAguas", nroAgua.ToString()},
+                    {"nroServicioCuarto", nroServicioCuarto.ToString()},
+                    {"valorRestaurante", valorRestaurante.ToString()},
+                    {"valorLavanderia", valorLavanderia.ToString()},
+                    {"valorTienda", valorTienda.ToString()},
+                    {"valorIVA", valorIVA.ToString()},
+                    {"valorEstadia", valorEstadia.ToString()},
+                    {"valorSeguroHotelero", valorSeguroHotelero.ToString()},
+                    {"valorDescuento", valorDescuento.ToString()},
+                    {"descuentoAplicado", descuentoAplicado.ToString()},
+                    {"valorServiciosCuarto", valorServicioHabitacion.ToString()},
+                    {"tipoCuarto", res.Habreserva.GetType().ToString()},
+                    {"TOTAL", valorTotal.ToString()}
                 };
 
                 return data;

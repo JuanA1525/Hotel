@@ -9,6 +9,6 @@ namespace b_Hotel.Interfaces
 {
     internal interface I_Recepcion
     {
-        Dictionary<string, float> Check_Out(Reserva res);
+        Dictionary<string, string> Check_Out(Reserva res);
     }
 }
