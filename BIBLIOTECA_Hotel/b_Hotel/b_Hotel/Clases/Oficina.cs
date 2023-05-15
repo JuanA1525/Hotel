@@ -41,7 +41,6 @@ namespace b_Hotel.Clases
 
                     res.Habreserva.Reservada = true;
                     res.Habreserva.Ocupada = false;
-                    res.Habreserva.ReservaActual = res;
 
                     l_reservas.Add(res);
                 }
@@ -65,7 +64,6 @@ namespace b_Hotel.Clases
                         {
                             res.Habreserva.Ocupada = false;
                             res.Habreserva.Reservada = false;
-                            res.Habreserva.ReservaActual = null;
 
                             if (res.Habreserva is Habitacion_Ejecutiva)
                             {
@@ -106,7 +104,6 @@ namespace b_Hotel.Clases
                         {
                             res.Habreserva.Reservada = false;
                             res.Habreserva.Ocupada = false;
-                            res.Habreserva.ReservaActual = null;
 
                             if (res.Habreserva is Habitacion_Ejecutiva)
                                 (res.Habreserva as Habitacion_Ejecutiva).Llenar_MiniBar();

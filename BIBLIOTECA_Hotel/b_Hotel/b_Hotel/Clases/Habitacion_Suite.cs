@@ -16,9 +16,7 @@ namespace b_Hotel.Clases
         {
             Ocupada = false;
             Reservada = false;
-            ReservaActual = null;
             PrecioNoche = precioSuite;
-            TieneMini = true;
             L_minibar = miniSuite.ToList();
         }
 

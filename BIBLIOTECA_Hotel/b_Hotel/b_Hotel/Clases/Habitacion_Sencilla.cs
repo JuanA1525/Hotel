@@ -14,9 +14,7 @@ namespace b_Hotel.Clases
         {
             Ocupada = false;
             Reservada = false;
-            ReservaActual = null;
             PrecioNoche = precioSencilla;
-            TieneMini = false;
         }
     }
 }

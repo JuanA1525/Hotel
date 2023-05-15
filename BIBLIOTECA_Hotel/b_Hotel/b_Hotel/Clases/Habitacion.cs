@@ -12,9 +12,9 @@ namespace b_Hotel.Clases
 {
     public abstract class Habitacion
     {
-        internal int precioSencilla = 200000;
-        internal int precioEjecutiva = 350000;
-        internal int precioSuite = 500000;
+        internal readonly int precioSencilla = 200000;
+        internal readonly int precioEjecutiva = 350000;
+        internal readonly int precioSuite = 500000;
 
         internal readonly List<Producto> miniEjecutiva = new ()
                 {
@@ -62,13 +62,9 @@ namespace b_Hotel.Clases
         private int precioNoche;
         private bool ocupada;
         private bool reservada;
-        private Reserva? reservaActual;
-        private bool tieneMini;
 
         public bool Ocupada { get => ocupada; set => ocupada = value; }
-        public Reserva? ReservaActual { get => reservaActual; set => reservaActual = value; }
         public int PrecioNoche { get => precioNoche; set => precioNoche = value; }
-        public bool TieneMini { get => tieneMini; set => tieneMini = value; }
         public bool Reservada { get => reservada; set => reservada = value; }
     }
 }

@@ -8,9 +8,9 @@ namespace b_Hotel.Clases
 {
     public class Comida
     {
-        private readonly int precDesayuno = 3000;
-        private readonly int precCena = 3500;
-        private readonly int precAlmuerzo = 50000;
+        private readonly int precDesayuno = 15000;
+        private readonly int precCena = 20000;
+        private readonly int precAlmuerzo = 25000;
         
         public enum e_tipos_comida { Desayuno, Cena, Almuerzo }
 
