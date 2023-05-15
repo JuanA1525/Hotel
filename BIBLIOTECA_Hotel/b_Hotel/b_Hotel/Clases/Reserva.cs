@@ -43,7 +43,37 @@ namespace b_Hotel.Clases
         public Usuario UsuarioReserva { get => usuarioReserva; set => usuarioReserva = value; }
         public int Nro_ServiciosCuarto { get => nro_ServiciosCuarto; set => nro_ServiciosCuarto = value; }
         public byte NroNoches { get => nroNoches; set => nroNoches = value; }
-        public DateTime FechaEntrada { get => fechaEntrada; set => fechaEntrada = value; }
-        public DateTime FechaSalida { get => fechaSalida; set => fechaSalida = value; }
+
+        public DateTime FechaEntrada 
+        { 
+            
+            get => fechaEntrada;
+            
+            set 
+            {
+                if (value < DateTime.Today)
+                {
+                    throw new ArgumentException("La fecha de entrada no puede ser anterior a Hoy");
+                }
+            } 
+        }
+
+        public DateTime FechaSalida 
+        { 
+            get => fechaSalida;
+
+            set
+            {
+                if (value < DateTime.Today)
+                {
+                    throw new ArgumentException("La fecha de salida no puede ser anterior a Hoy");
+                }
+
+                if (value < FechaEntrada)
+                {
+                    throw new ArgumentException("La fecha de salida no puede ser anterior a la fecha de entrada");
+                }
+            }
+        }
     }
 }

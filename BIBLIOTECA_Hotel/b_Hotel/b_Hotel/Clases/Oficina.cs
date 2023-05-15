@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -285,13 +286,16 @@ namespace b_Hotel.Clases
             }
         }
 
-        public List<Habitacion> Buscar_Habitaciones_Disponibles(DateTime FechaEntrada, DateTime FechaSalida)
+        public List<Habitacion> Buscar_Habitaciones_Disponibles(string strFechaEntrada, string strFechaSalida)
         {
             List<Habitacion> habitacionesDisponibles = new List<Habitacion>();
             bool disponible; 
 
             try
             {
+                DateTime FechaEntrada = DateTime.ParseExact(strFechaEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime FechaSalida = DateTime.ParseExact(strFechaSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+
                 foreach (Habitacion Hab in Hotel.Obtener_Instancia_Hotel().l_habitaciones)
                 {
                     disponible = true;
