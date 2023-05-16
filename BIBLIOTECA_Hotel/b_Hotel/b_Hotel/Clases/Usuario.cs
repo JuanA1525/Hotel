@@ -77,7 +77,7 @@ namespace b_Hotel.Clases
                     throw new ArgumentException($"El Usuario debe tener mas de 6 caracteres.");
                 }
 
-                foreach (Usuario usu in hotel.l_usuarios)
+                foreach (Usuario usu in Hotel.Obtener_Instancia_Hotel().l_usuarios)
                 {
                     if (usu.UsuarioLogin.Equals(value))
                     {
@@ -140,13 +140,23 @@ namespace b_Hotel.Clases
             Console.WriteLine("Procesando Reserva...");
         }
 
-        public void Crear_Reserva(Habitacion hab, string strFechaEntrada, string strFechaSalida)
+        public void Crear_Reserva(short habId, string strFechaEntrada, string strFechaSalida)
         {
             Reserva reservaUsu;
             Oficina office = hotel.oficinaHotel;
+            Habitacion hab = null;
 
             try
             {
+                foreach (Habitacion item in hotel.l_habitaciones)
+                {
+                    if (item.Id == habId)
+                    hab = item;
+                }
+
+                if (hab == null)
+                    throw new Exception("Id de Habitacion Invalido");
+
                 reservaUsu = new Reserva(hab, this, strFechaEntrada, strFechaSalida);
 
                 if (!tieneReserva)

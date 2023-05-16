@@ -15,6 +15,8 @@ namespace b_Hotel.Clases
             Ocupada = false;
             Reservada = false;
             PrecioNoche = precioSencilla;
+            ContId++;
+            Id = ContId;
         }
     }
 }

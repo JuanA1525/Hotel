@@ -11,12 +11,16 @@ namespace b_Hotel.Clases
 {
     internal class Recepcion : I_Recepcion
     {
-        private float iva = 0.19f;
-        private float seguroHotelero = 0.025f;
-        private short servicioCuarto = 5000;
+        private readonly float iva;
+        private readonly float seguroHotelero;
+        private readonly short servicioCuarto;
 
         public Recepcion() 
-        {}
+        {
+            iva = 0.19f;
+            seguroHotelero = 0.025f;
+            servicioCuarto = 5000;
+        }
 
         public Dictionary<string, string> Check_Out(Reserva res)
         {       

@@ -16,6 +16,7 @@ namespace b_Hotel.Clases
         internal readonly int precioEjecutiva = 350000;
         internal readonly int precioSuite = 500000;
 
+
         internal readonly List<Producto> miniEjecutiva = new ()
                 {
                     new Producto(Producto.e_tipos_producto.Licor),
@@ -62,9 +63,14 @@ namespace b_Hotel.Clases
         private int precioNoche;
         private bool ocupada;
         private bool reservada;
+        private static short contId = 100;
+        private short id = 0;
+
 
         public bool Ocupada { get => ocupada; set => ocupada = value; }
         public int PrecioNoche { get => precioNoche; set => precioNoche = value; }
         public bool Reservada { get => reservada; set => reservada = value; }
+        public static short ContId { get => contId; set => contId = value; }
+        public short Id { get => id; set => id = value; }
     }
 }

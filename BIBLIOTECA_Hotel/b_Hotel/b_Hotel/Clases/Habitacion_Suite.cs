@@ -18,6 +18,8 @@ namespace b_Hotel.Clases
             Reservada = false;
             PrecioNoche = precioSuite;
             L_minibar = miniSuite.ToList();
+            ContId++;
+            Id = ContId;
         }
 
 
@@ -50,6 +52,5 @@ namespace b_Hotel.Clases
                 throw new Exception("Error en Tiene Producto Sui");
             }
         }
-
     }
 }

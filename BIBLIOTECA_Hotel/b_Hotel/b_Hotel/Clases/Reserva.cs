@@ -28,8 +28,8 @@ namespace b_Hotel.Clases
             
             resProductos = new();
             resComidas = new(); 
-            resServicios = new(); 
-            nro_ServiciosCuarto = new();
+            resServicios = new();
+            nro_ServiciosCuarto = 0;
             FechaEntrada = DateTime.ParseExact(fEntrada, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             FechaSalida = DateTime.ParseExact(fSalida, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             tiempoEstadia = FechaSalida - FechaEntrada;
@@ -43,7 +43,6 @@ namespace b_Hotel.Clases
         public Usuario UsuarioReserva { get => usuarioReserva; set => usuarioReserva = value; }
         public int Nro_ServiciosCuarto { get => nro_ServiciosCuarto; set => nro_ServiciosCuarto = value; }
         public byte NroNoches { get => nroNoches; set => nroNoches = value; }
-
         public DateTime FechaEntrada 
         { 
             
@@ -57,7 +56,6 @@ namespace b_Hotel.Clases
                 }
             } 
         }
-
         public DateTime FechaSalida 
         { 
             get => fechaSalida;

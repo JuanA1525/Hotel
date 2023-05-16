@@ -19,6 +19,8 @@ namespace b_Hotel.Clases
             PrecioNoche = precioEjecutiva;
 
             L_minibar = miniEjecutiva.ToList();
+            ContId++;
+            Id = ContId;
         }
 
         public void Llenar_MiniBar()
@@ -26,7 +28,6 @@ namespace b_Hotel.Clases
             Console.WriteLine("ReLlenando MiniBar");
             L_minibar = miniEjecutiva.ToList();
         }
-
         public void Tiene_Producto()
         {
             try
