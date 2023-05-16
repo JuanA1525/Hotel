@@ -22,7 +22,6 @@ namespace b_Hotel.Clases
             Id = ContId;
         }
 
-
         public void Llenar_MiniBar()
         {
             L_minibar = miniSuite.ToList();
@@ -50,6 +49,25 @@ namespace b_Hotel.Clases
             catch (Exception e)
             {
                 throw new Exception("Error en Tiene Producto Sui");
+            }
+        }
+        public override string Reportar_Estado()
+        {
+            string salida = "MiniBar -> ", productos = "";
+            try
+            {
+                foreach (Producto item in L_minibar)
+                {
+                    productos += $"\n  - {item.Type}";
+                }
+
+                salida += productos;
+
+                return base.Reportar_Estado() + salida;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
     }

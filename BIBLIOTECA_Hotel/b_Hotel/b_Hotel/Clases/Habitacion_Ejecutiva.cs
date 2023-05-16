@@ -52,5 +52,25 @@ namespace b_Hotel.Clases
                 throw new Exception("Error en Tiene Producto Eje");
             }
         }
+
+        public override string Reportar_Estado()
+        {
+            string salida = "MiniBar -> ", productos = "";
+            try
+            {
+                foreach (Producto item in L_minibar)
+                {
+                    productos += $"\n  - {item.Type}";
+                }
+
+                salida += productos;
+
+                return base.Reportar_Estado() + salida;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

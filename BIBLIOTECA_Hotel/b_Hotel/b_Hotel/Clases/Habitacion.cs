@@ -17,7 +17,7 @@ namespace b_Hotel.Clases
         internal readonly int precioSuite = 500000;
 
 
-        internal readonly List<Producto> miniEjecutiva = new ()
+        internal readonly List<Producto> miniEjecutiva = new()
                 {
                     new Producto(Producto.e_tipos_producto.Licor),
                     new Producto(Producto.e_tipos_producto.Licor),
@@ -28,7 +28,7 @@ namespace b_Hotel.Clases
                     new Producto(Producto.e_tipos_producto.Gaseosa)
                 };
 
-        internal readonly List<Producto> miniSuite = new ()
+        internal readonly List<Producto> miniSuite = new()
                 {
                     new Producto(Producto.e_tipos_producto.Licor),
                     new Producto(Producto.e_tipos_producto.Licor),
@@ -72,5 +72,20 @@ namespace b_Hotel.Clases
         public bool Reservada { get => reservada; set => reservada = value; }
         public static short ContId { get => contId; set => contId = value; }
         public short Id { get => id; set => id = value; }
+
+        public virtual string Reportar_Estado()
+        {
+            try
+            {
+                return  $"--- Habitacion {Id} ---\n" +
+                    $"Tipo -> {GetType()}\n" +
+                    $"Ocupada -> {ocupada}\n" +
+                    $"Reservada -> {reservada}\n";
+            }
+            catch (Exception e) 
+            { 
+                throw new Exception("Error en Reportar Estado:\n" + e);
+            }
+        }
     }
 }

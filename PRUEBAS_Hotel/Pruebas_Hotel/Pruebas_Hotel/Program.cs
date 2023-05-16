@@ -70,9 +70,11 @@ internal class Program
 
         habs = hotel.oficinaHotel.Buscar_Habitaciones_Disponibles(entrada,salida).ToList();
 
-        Habitacion hab1 = habs[31];
+        Habitacion hab1 = habs[1];
         Console.WriteLine(hab1.Id);
 
         usu1.Crear_Reserva(hab1.Id,entrada,salida);
+
+        Console.WriteLine(hab1.Reportar_Estado());
     }
 }
